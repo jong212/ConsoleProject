@@ -45,11 +45,7 @@ namespace consoleproject
             get { return isBossDefeated; }
             set { isBossDefeated = value; }
         }
-        /*
-        public Dictionary<string, List<string>> GetAnimalAnimations()
-        {
-            return animalAnimations;
-        }*/
+      
 
         // 인트로를 시작하는 메서드
         public void StartIntro()
@@ -101,31 +97,12 @@ namespace consoleproject
             list.Add("이 마을을 구할 수 있는 키워드 세 개를 지금 당장 말해봐");
 
 
-            GlovalMethod.oneprt(list, 4, 30, true);
+            GlovalMethod.oneprt(list, 4, 30, "rabbit" ,0, 0);
             //Console.WriteLine("평화롭던 떡잎마을에 괴물이 출몰했습니다!");
             // 추가 인트로 로직...
         }
 
-        /*
-        Dictionary<string, List<string>> animalAnimations = new Dictionary<string, List<string>>()
-        {
-            { "rabbit", new List<string>
-                {
-                    "\r\n\r\n /\\_/\\\r\n ( o.o )\r\n (\")_(\")",
-                    "\r\n\r\n /\\_/\\\r\n ( o.x )\r\n (\")_(\")",
-                    "\r\n\r\n /\\_/\\\r\n ( x.o )\r\n (\")_(\")"
-                }
-            },
-            { "cat", new List<string>
-                {
-                    "\r\n\r\n /\\_/\\\r\n ( =^.^= )\r\n (\")_(\")",
-                    "\r\n\r\n /\\_/\\\r\n ( =^.o= )\r\n (\")_(\")",
-                    "\r\n\r\n /\\_/\\\r\n ( o^.^= )\r\n (\")_(\")"
-                }
-            },
-            // Add more animals here...
-        };
-       */
+        
         // 맵 탐험을 시작하는 메서드
         public void ExploreMap()
         {
