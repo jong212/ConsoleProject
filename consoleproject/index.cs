@@ -11,11 +11,10 @@ namespace consoleproject
     {
         static void Main(string[] args)
         {
-            
+
 
             GameProgressService.Instance.StartIntro();
             Console.Read();
-
         }
     }
 }

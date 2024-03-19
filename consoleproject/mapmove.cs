@@ -75,7 +75,7 @@ class mapmove
                 Console.Write(currentMap[x, y]);
             }
             Console.WriteLine();
-            
+
         }
     }
 

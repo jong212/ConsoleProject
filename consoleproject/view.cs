@@ -3,17 +3,11 @@ using System.Threading;
 
 namespace consoleproject
 {
-    public class mainSet
+    public class viewSet
     {
-        public void textView()
+        public void ArtWorld()
         {
-            int windowWidth = 130; // Example width
-            int windowHeight = 60; // Example height
 
-            Console.SetWindowSize(windowWidth, windowHeight);
-            Console.SetBufferSize(windowWidth, windowHeight);
-            Console.SetWindowSize(110,60);
-            Console.SetBufferSize(110,60);
 
             string[] mainLogo = {
                 @"       d8888 8888888b. 88888888888      888       888  .d88888b.  8888888b.  888      8888888b.",
@@ -30,7 +24,7 @@ namespace consoleproject
             if (left < 0) left = 0; // Ensure left is non-negative
 
             // Draw the initial border
-            DrawBorder();
+            //DrawBorder();
 
             for (int i = 0; i < mainLogo.Length; i++)
             {
@@ -44,7 +38,7 @@ namespace consoleproject
         }
 
         // Method to draw a fixed border around the console window
-        private void DrawBorder()
+        public void BoxLine()
         {
             int windowWidth = Console.WindowWidth;
             int windowHeight = Console.WindowHeight;
@@ -62,9 +56,11 @@ namespace consoleproject
             {
                 Console.SetCursorPosition(0, i);
                 Console.Write("■");
-                Console.SetCursorPosition(windowWidth -2, i);
+                Console.SetCursorPosition(windowWidth - 2, i);
                 Console.Write("■");
             }
-        }
+        } //BoxLine end
+
+
     }
 }

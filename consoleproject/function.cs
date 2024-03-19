@@ -1,49 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace consoleproject
 {
-    public static class GlovalMethod // Utilities 클래스 추가
+    public static class GlovalMethod
     {
-        public static void prt(string str,int numA,int numB) // static 키워드 추가, 메서드 이름 대문자로 시작하도록 수정
+        //텍스트 하나짜리 출력 
+        public static void prt(string str, int numA, int numB)
         {
-            Console.SetCursorPosition(numA,numB);
+            Console.SetCursorPosition(numA, numB);
             Console.WriteLine(str);
-        }
-
-        public static void oneprt(List<string> list,int numA, int numB,bool alignCenter) // static 키워드 추가, 메서드 이름 대문자로 시작하도록 수정
-        {
-            foreach (var sentence in list)
-            {
-                int initialCursorLeft = numA; // 기본적으로 numA를 사용
-                alignCenter = false;
-                if (alignCenter)
-                {
-                    // 가운데 정렬을 위한 계산
-                    int windowWidth = Console.WindowWidth;
-                    int stringLength = sentence.Length;
-                    initialCursorLeft = (windowWidth - stringLength ) / 2; // 가운데 정렬 시에만 재계산
-                }
-
-                for (int i = 0; i < sentence.Length; i++)
-                {
-                    Console.SetCursorPosition(initialCursorLeft + i, numB + 1); // 커서 위치 설정
-                    Console.Write(sentence[i]);
-                    Thread.Sleep(80); // 다음 문장으로 넘어가기 전에 잠시 대기
-
-
-                }
-                numB++; // 다음 줄로 이동
-                Thread.Sleep(100); // 다음 문장으로 넘어가기 전에 잠시 대기
-            }
             Console.Out.Flush();
 
         }
 
+        //텍스트 출력 가운데 정렬은 옵션
+        public static void oneprt(List<string> list, int numA, int numB, bool alignCenter)
+        {
+            foreach (var sentence in list)
+            {
+                int initialCursorLeft = numA;
+                alignCenter = false;
+                if (alignCenter)
+                {
+                    int windowWidth = Console.WindowWidth;
+                    int stringLength = sentence.Length;
+                    initialCursorLeft = (windowWidth - stringLength) / 2;
+                }
+
+
+                Console.SetCursorPosition(initialCursorLeft, numB);
+
+                foreach (char character in sentence)
+                {
+                    int charWidth = GetCharacterWidth(character);
+                    Console.Write(character);
+                    initialCursorLeft += charWidth;
+                    Thread.Sleep(80);
+                    Console.Out.Flush();
+                }
+                numB++;
+                Thread.Sleep(100);
+            }
+            Console.Out.Flush();
+        }
+
+        //텍스트 찌그러져서 출력되는 현상 해결해주는 함수
+        private static int GetCharacterWidth(char character)
+        {
+            int width = 1; // Default width is 1
+            // Handle double-width characters (such as some Unicode characters)
+            if (!char.IsControl(character) && char.IsLetterOrDigit(character))
+            {
+                width = 2;
+            }
+            return width;
+        }
+
+
+
+        /*
+        public static async Task DisplayAnimationsAsync(string animalName = "", int delay = 300)
+        {
+            var allAnimations = GameProgressService.Instance.GetAnimalAnimations();
+
+            // 특정 동물의 애니메이션만 표시하거나, 매개변수가 비어있으면 모든 동물의 애니메이션 표시
+            foreach (var animal in allAnimations)
+            {
+                if (!string.IsNullOrEmpty(animalName) && animal.Key != animalName)
+                {
+                    continue; // 특정 동물만 처리하고자 할 때, 해당 동물이 아니면 건너뛰기
+                }
+
+                Console.WriteLine($"{animal.Key} animations:");
+                foreach (var animation in animal.Value)
+                {
+                    Console.WriteLine(animation); // 애니메이션 출력
+                    await Task.Delay(delay); // 매개변수로 받은 대기 시간을 적용
+                }
+                Console.WriteLine(); // 동물 구분을 위한 공백 줄
+            }
+        }
+        */
 
     }
-
 }
